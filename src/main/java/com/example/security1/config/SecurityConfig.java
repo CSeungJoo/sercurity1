@@ -36,8 +36,10 @@ public class SecurityConfig {
                     req.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
                     req.anyRequest().permitAll();
                 })
-                .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer.loginPage("/login");
+                .formLogin(loginConfigurer -> {
+                    loginConfigurer.loginPage("/loginForm");
+                    loginConfigurer.loginProcessingUrl("/login"); // ;login 주소가 호출이 되면 시큐리티기 닊이체사 대신 로그인을 진행
+                    loginConfigurer.defaultSuccessUrl("/");
                 });
         return http.build();
     }
