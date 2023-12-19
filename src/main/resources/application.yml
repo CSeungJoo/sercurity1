@@ -1,24 +1,24 @@
 spring:
-#  datasource:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:tcp://localhost/~/security
-#    username: sa
-#    password:
-#  jpa:
-#    database: h2
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create-drop
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        show_sql: true
-#logging:
-#  level:
-#    org.hibernate.sql: debug
-#    root: info
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/security
+    username: sa
+    password:
+  jpa:
+    database: h2
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+logging:
+  level:
+    org.hibernate.sql: debug
+    root: info
 server:
   port: 8080
   servlet:
