@@ -1,6 +1,8 @@
 package com.example.security1.config;
 
+import com.example.security1.config.oauth.PrincipalOauth2UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true) //secured 어노테이션 활성화, preAuthorize, postAuthorize 어노테이션 활성화
 public class SecurityConfig {
+
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
 
     // 해당 메서드의 리턴되는 오프젝트를 IOC로 등록
     @Bean
@@ -45,6 +50,7 @@ public class SecurityConfig {
                 })
                 .oauth2Login(oauth -> {
                     oauth.loginPage("/loginForm"); // 구글 로그인이 완료된 뒤의 후처리가 필요함
+                    oauth.userInfoEndpoint(info -> info.userService(principalOauth2UserService));
                 });
         return http.build();
     }
