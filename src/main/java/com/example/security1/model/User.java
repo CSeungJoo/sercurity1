@@ -1,16 +1,17 @@
 package com.example.security1.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
 @Entity
 @Data
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,5 +20,8 @@ public class User {
     private String email;
     private String role;
     private Timestamp loginDate;
+    private String providerId;
+    private String provider;
+    @CreationTimestamp
     private Timestamp createDate;
 }
